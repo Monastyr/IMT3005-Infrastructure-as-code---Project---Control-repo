@@ -14,6 +14,7 @@ class profile::consul::server {
       'node_name'        => $facts['hostname'],
       'server'           => true,
       'retry_join'       => [ $::serverip ],
+	  'ui'               => true,
     },
     require     => Package['unzip'],
   }
