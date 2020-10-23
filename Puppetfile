@@ -58,8 +58,3 @@ mod 'puppet-unattended_upgrades', '4.0.0'
 
 #PROJECT
 mod 'puppetlabs-docker', '3.12.1'
-#mod 'scottyc-docker_swarm', '1.0.2'
-#mod 'scottyc-golang', '2.0.3'
-#mod 'rehan-wget', '1.5.1'
-#mod 'puppet-wget', '2.0.1'
-#mod 'maestrodev-wget', '1.7.3'
