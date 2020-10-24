@@ -66,6 +66,7 @@ volumes:
 	docker::stack { 'test':
 		compose_files => ['/tmp/docker-compose.yml'],
 		ensure  => present,
+		stack_name => 'wp',
 		require => [Class['docker'], File['/tmp/docker-compose.yml'], ], 
 	}
 }
