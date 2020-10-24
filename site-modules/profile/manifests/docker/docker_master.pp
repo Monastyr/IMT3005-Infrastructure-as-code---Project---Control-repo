@@ -21,6 +21,18 @@ class profile::docker::docker_master {
 				command => '/bin/echo  $( /usr/bin/docker swarm join-token worker | tail -2 | cut -d " " -f9) >> /etc/puppetlabs/code/shared-hieradata/common.yaml',
 				}
 		
+		
+		
+	docker::services {'redis':
+    create => true,
+    service_name => 'redis',
+    image => 'redis:latest',
+    publish => '6379:639',
+    replicas => '5',
+    mounts => ['type=bind,source=/etc/my-redis.conf,target=/etc/redis/redis.conf,readonly'],
+    extra_params => ['--update-delay 1m', '--restart-window 30s'],
+    command => ['redis-server', '--appendonly', 'yes'],
+  }		
 }
 
 
