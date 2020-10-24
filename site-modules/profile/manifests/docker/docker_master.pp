@@ -1,4 +1,4 @@
-class profile::docker_master {
+class profile::docker::docker_master {
 	class { 'docker':}
 	
 			docker::swarm {'cluster_manager':
