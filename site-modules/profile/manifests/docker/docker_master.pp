@@ -58,7 +58,7 @@ services:
        WORDPRESS_DB_NAME: wordpress
      deploy:
        replicas: 1
-	   restart_policy:
+     restart_policy:
         condition: on-failure
 volumes:
     db_data: {}"
