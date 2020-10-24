@@ -44,7 +44,6 @@ services:
        MYSQL_PASSWORD: wordpress
 	 deploy:
        replicas: 4
-
    wordpress:
      depends_on:
        - db
@@ -59,7 +58,7 @@ services:
        WORDPRESS_DB_NAME: wordpress
 volumes:
     db_data: {}"
-	}
+}
 	
 	docker_compose { 'test':
 		compose_files => ['/tmp/docker-compose.yml'],
