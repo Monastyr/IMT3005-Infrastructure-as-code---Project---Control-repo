@@ -43,7 +43,7 @@ services:
        MYSQL_USER: wordpress
        MYSQL_PASSWORD: wordpress
 	 deploy:
-	   replicas: 4
+       replicas: 4
 
    wordpress:
      depends_on:
