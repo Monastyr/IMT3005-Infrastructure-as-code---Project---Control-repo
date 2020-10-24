@@ -23,16 +23,10 @@ class profile::docker::docker_master {
 		
 		
 		
-	docker::services {'redis':
-    create => true,
-    service_name => 'redis',
-    image => 'redis:latest',
-    publish => '6379:639',
-    replicas => '5',
-    mounts => ['type=bind,source=/etc/my-redis.conf,target=/etc/redis/redis.conf,readonly'],
-    extra_params => ['--update-delay 1m', '--restart-window 30s'],
-    command => ['redis-server', '--appendonly', 'yes'],
-  }		
+	docker::registry {'https://hub.docker.com/_/wordpress':
+  username => 'username',
+  password => 'password',
+}
 }
 
 
