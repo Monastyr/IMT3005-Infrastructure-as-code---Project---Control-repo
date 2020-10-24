@@ -56,11 +56,14 @@ services:
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
+     deploy:
+       replicas: 4
 volumes:
     db_data: {}"
+	
 }
 	
-	docker_compose { 'test':
+	docker::stack { 'test':
 		compose_files => ['/tmp/docker-compose.yml'],
 		ensure  => present,
 		require => [Class['docker'], File['/tmp/docker-compose.yml'], ], 
