@@ -22,7 +22,7 @@ class profile::docker::docker_master {
 				}
 		
 		
-		class {'docker::compose':
+	class {'docker::compose':
 	  ensure => present,
 	}
 
@@ -42,8 +42,8 @@ services:
        MYSQL_DATABASE: wordpress
        MYSQL_USER: wordpress
        MYSQL_PASSWORD: wordpress
-     deploy: 
-       replicas: 4
+	 deploy:
+	   replicas: 4
 
    wordpress:
      depends_on:
@@ -57,8 +57,8 @@ services:
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
-	volumes:
-		db_data: {}"
+volumes:
+    db_data: {}"
 	}
 	
 	docker_compose { 'test':
