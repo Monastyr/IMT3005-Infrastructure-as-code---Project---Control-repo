@@ -4,4 +4,5 @@ class role::manager_server {
   include ::profile::consul::server
   #include ::profile::wordpress
   include ::profile::docker_swarm
+  include ::profile::prometheus::grafana
 }
