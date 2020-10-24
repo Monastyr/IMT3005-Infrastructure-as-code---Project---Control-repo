@@ -58,3 +58,5 @@ mod 'puppet-unattended_upgrades', '4.0.0'
 
 #PROJECT
 mod 'puppetlabs-docker', '3.12.1'
+mod 'puppet-prometheus', '10.2.0'
+mod 'puppet-grafana', '7.0.0'
