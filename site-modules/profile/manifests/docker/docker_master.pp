@@ -43,7 +43,7 @@ services:
        MYSQL_USER: wordpress
        MYSQL_PASSWORD: wordpress
      deploy:
-       replicas: 4
+       replicas: 1
    wordpress:
      depends_on:
        - db
@@ -57,7 +57,7 @@ services:
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
      deploy:
-       replicas: 4
+       replicas: 1
 volumes:
     db_data: {}"
 	
