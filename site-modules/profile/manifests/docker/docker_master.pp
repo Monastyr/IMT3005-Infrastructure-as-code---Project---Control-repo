@@ -45,9 +45,11 @@ services:
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
+#     volumes:
+#     - "/mnt/wp-content:/var/www/html/wp-content"
      deploy:
        placement:
-         constraints: [node.role == worker]
+         constraints: [node.role == worker]"
 }
 	
 	docker::stack { 'test':
