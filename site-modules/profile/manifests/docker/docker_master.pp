@@ -21,7 +21,7 @@ class profile::docker::docker_master {
 				command => '/bin/echo  $( /usr/bin/docker swarm join-token worker | tail -2 | cut -d " " -f9) >> /etc/puppetlabs/code/shared-hieradata/common.yaml',
 				}
 			exec { 'dir':
-			command => '/bin/echo "dir_ip: $(/usr/local/bin/consul members | grep dir | tr [:] [' '] | cut -d " " -f7) " >> /etc/puppetlabs/code/shared-hieradata/common.yaml'
+			command => '/bin/echo "dir_ip: $(/usr/local/bin/consul members | grep dir | tr [:] [" "] | cut -d " " -f7) " >> /etc/puppetlabs/code/shared-hieradata/common.yaml'
 			}
 			
 			
