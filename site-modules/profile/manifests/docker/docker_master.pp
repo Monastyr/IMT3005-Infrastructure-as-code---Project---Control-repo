@@ -46,8 +46,6 @@ services:
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
      deploy:
-       placement:
-         constraints: [node.role == worker]
        replicas: 4"
 }
 	
