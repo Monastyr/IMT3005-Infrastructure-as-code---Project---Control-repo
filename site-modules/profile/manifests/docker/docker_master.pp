@@ -54,7 +54,7 @@ services:
       MYSQL_PASSWORD: wordpress
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
-      - "/mnt/mysql:/var/lib/mysql"
+      - '/mnt/mysql:/var/lib/mysql'
     deploy:
       placement:
         constraints: [node.role == worker]"
