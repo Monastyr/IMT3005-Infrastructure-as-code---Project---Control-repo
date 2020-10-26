@@ -58,4 +58,4 @@ services:
 }
 
 
-Exec['manager_ip'] -> Exec['token'] -> Exec['token2'] ->Exec['database_ip']
+Exec['manager_ip'] -> Exec['database_ip'] -> Exec['token'] ->Exec['token2']
