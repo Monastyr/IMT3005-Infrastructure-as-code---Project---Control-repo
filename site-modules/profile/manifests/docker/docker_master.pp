@@ -53,6 +53,8 @@ services:
      depends_on:
        - db
      image: wordpress:latest
+     volumes:
+       - wp_data:/var/www/html/wp-content
      ports:
        - \"80:80\"
      restart: always
@@ -66,7 +68,8 @@ services:
       placement:
         constraints: [node.role == worker]
 volumes:
-    db_data: {}"
+    db_data: {}
+    wp_data: {}"
 }
 	
 	docker::stack { 'test':
