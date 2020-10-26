@@ -44,7 +44,7 @@ services:
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
      deploy:
-       replicas: 4"
+       replicas: 4
    db:
     image: mysql:5.7
     restart: always
@@ -57,7 +57,7 @@ services:
       - "/mnt/mysql:/var/lib/mysql"
     deploy:
       placement:
-        constraints: [node.role == worker]
+        constraints: [node.role == worker]"
 }
 	
 	docker::stack { 'test':
