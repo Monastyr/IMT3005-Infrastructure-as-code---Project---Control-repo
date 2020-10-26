@@ -19,6 +19,6 @@ node /(ws)\d?.node.consul/ {
 }
 
 node 'db.node.consul' {
-  include ::role::wordpress_server
+  include ::role::database_server
 }
 
