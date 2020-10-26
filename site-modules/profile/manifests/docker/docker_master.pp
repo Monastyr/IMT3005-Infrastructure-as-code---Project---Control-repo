@@ -22,6 +22,7 @@ class profile::docker::docker_master {
 				}
 			exec { 'database_ip':
 			command => '/bin/echo "database_ip: $(/usr/local/bin/consul members | grep db | tr [:] [" "] | cut -d " " -f8) " >> /etc/puppetlabs/code/shared-hieradata/common.yaml'
+			$database_ip = lookup(database_ip)
 			}
 			
 	#$database_ip = lookup(database_ip)		
@@ -41,7 +42,7 @@ services:
      ports:
        - \"80:80\"
      environment:
-       WORDPRESS_DB_HOST: lookup(database_ip):3306
+       WORDPRESS_DB_HOST: $database_ip:3306
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
