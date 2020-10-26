@@ -46,7 +46,7 @@ services:
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
      volumes:
-      - "/mnt/wp-content:/var/www/html/wp-content"
+      - /mnt/wp-content:/var/www/html/wp-content
      deploy:
        placement:
          constraints: [node.role == worker]
