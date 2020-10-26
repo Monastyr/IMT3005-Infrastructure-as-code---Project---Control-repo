@@ -24,7 +24,7 @@ class profile::docker::docker_master {
 			command => '/bin/echo "database_ip: $(/usr/local/bin/consul members | grep db | tr [:] [" "] | cut -d " " -f8) " >> /etc/puppetlabs/code/shared-hieradata/common.yaml'
 			}
 			
-	$database_ip = lookup(database_ip)		
+	#$database_ip = lookup(database_ip)		
 		
 	class {'docker::compose':
 	  ensure => present,
@@ -41,7 +41,7 @@ services:
      ports:
        - \"80:80\"
      environment:
-       WORDPRESS_DB_HOST: $database_ip:3306
+       WORDPRESS_DB_HOST: lookup(database_ip):3306
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
@@ -56,6 +56,3 @@ services:
 		require => [Class['docker'], File['/tmp/docker-compose.yml'], ], 
 	}
 }
-
-
-Exec['manager_ip'] -> Exec['database_ip'] ~> Exec['token2'] ~>Exec['token2']
