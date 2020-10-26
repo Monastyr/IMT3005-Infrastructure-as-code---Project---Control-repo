@@ -78,4 +78,17 @@ volumes:
 		stack_name => 'wp',
 		require => [Class['docker'], File['/tmp/docker-compose.yml'], ], 
 	}
+	
+	
+	
+	node '$fact['fqnd']' {
+  # Configure puppetdb and its underlying database
+  class { 'puppetdb': }
+  # Configure the Puppet master to use puppetdb
+  class { 'puppetdb::master::config': }
+}
+	
+	
+	
+	
 }

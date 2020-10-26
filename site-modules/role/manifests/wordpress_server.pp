@@ -3,4 +3,5 @@ class role::wordpress_server{
   include ::profile::dns::client
   include ::profile::consul::client
   include ::profile::docker::docker_worker
+  include ::profile::glusterfs::glusterfs
   }
