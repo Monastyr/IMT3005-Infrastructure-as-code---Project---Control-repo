@@ -41,7 +41,7 @@ services:
      ports:
        - \"8080:80\"
      environment:
-       WORDPRESS_DB_HOST: '$database_ip':3306
+       WORDPRESS_DB_HOST: $database_ip:3306
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
