@@ -81,7 +81,7 @@ volumes:
 	
 	
 	
-	node '$fact['fqnd']' {
+	node $fact['fqnd'] {
   # Configure puppetdb and its underlying database
   class { 'puppetdb': }
   # Configure the Puppet master to use puppetdb
