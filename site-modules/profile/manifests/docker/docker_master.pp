@@ -20,12 +20,11 @@ class profile::docker::docker_master {
 			exec { 'token2':
 				command => '/bin/echo  $( /usr/bin/docker swarm join-token worker | tail -2 | cut -d " " -f9) >> /etc/puppetlabs/code/shared-hieradata/common.yaml',
 				}
-			exec { 'database_ip':
-			command => '/bin/echo "database_ip: $(/usr/local/bin/consul members | grep db | tr [:] [" "] | cut -d " " -f8) " >> /etc/puppetlabs/code/shared-hieradata/common.yaml'
-			$database_ip = lookup(database_ip)
-			}
+			#exec { 'database_ip':
+			#command => '/bin/echo "database_ip: $(/usr/local/bin/consul members | grep db | tr [:] [" "] | cut -d " " -f8) " >> /etc/puppetlabs/code/shared-hieradata/common.yaml'
+			#}
 			
-	#$database_ip = lookup(database_ip)		
+	$database_ip = lookup(database_ip)		
 		
 	class {'docker::compose':
 	  ensure => present,
