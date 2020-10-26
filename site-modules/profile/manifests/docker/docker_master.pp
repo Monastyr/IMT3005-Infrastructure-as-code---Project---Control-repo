@@ -45,8 +45,9 @@ services:
        MYSQL_USER: wordpress
        MYSQL_PASSWORD: wordpress
      deploy:
-      placement:
-        constraints: [node.role == worker]
+       replicas: 3
+       placement:
+         constraints: [node.role == worker]
 
    wordpress:
      depends_on:
@@ -61,6 +62,7 @@ services:
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
      deploy:
+       replicas: 3
       placement:
         constraints: [node.role == worker]
 volumes:
