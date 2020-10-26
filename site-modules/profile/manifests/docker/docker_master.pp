@@ -20,8 +20,8 @@ class profile::docker::docker_master {
 			exec { 'token2':
 				command => '/bin/echo  $( /usr/bin/docker swarm join-token worker | tail -2 | cut -d " " -f9) >> /etc/puppetlabs/code/shared-hieradata/common.yaml',
 				}
-			exec { 'dir':
-			command => '/bin/echo "dir_ip: $(/usr/local/bin/consul members | grep dir | tr [:] [" "] | cut -d " " -f7) " >> /etc/puppetlabs/code/shared-hieradata/common.yaml'
+			exec { 'database_ip':
+			command => '/bin/echo "database_ip: $(/usr/local/bin/consul members | grep db | tr [:] [" "] | cut -d " " -f7) " >> /etc/puppetlabs/code/shared-hieradata/common.yaml'
 			}
 			
 			
