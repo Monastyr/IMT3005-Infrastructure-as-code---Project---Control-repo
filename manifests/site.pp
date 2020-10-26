@@ -14,11 +14,10 @@ node 'mon.node.consul' {
   include ::role::monitoring_server
 }
 
-node /(ws)\d?.node.consul/ {
-  include ::role::wordpress_server
-}
-
 node 'db.node.consul' {
   include ::role::database_server
 }
 
+node /(ws)\d?.node.consul/ {
+  include ::role::wordpress_server
+}
