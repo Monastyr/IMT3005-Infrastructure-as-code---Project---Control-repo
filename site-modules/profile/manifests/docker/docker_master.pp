@@ -34,30 +34,31 @@ class profile::docker::docker_master {
 version: '3.3'
 
 services:
+   db:
+     image: mysql:5.7
+     volumes:
+       - db_data:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: somewordpress
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wordpress
+       MYSQL_PASSWORD: wordpress
+
    wordpress:
+     depends_on:
+       - db
      image: wordpress:latest
      ports:
-       - \"8080:80\"
+       - \"80:80\"
+     restart: always
      environment:
        WORDPRESS_DB_HOST: db:3306
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
-     deploy:
-       replicas: 4
-   db:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_DATABASE: exampledb
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
-    volumes:
-      - '/mnt/mysql:/var/lib/mysql'
-    deploy:
-      placement:
-        constraints: [node.role == worker]"
+volumes:
+    db_data: {}"
 }
 	
 	docker::stack { 'test':
