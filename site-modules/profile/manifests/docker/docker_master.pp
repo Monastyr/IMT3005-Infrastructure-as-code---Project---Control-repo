@@ -47,7 +47,8 @@ services:
        WORDPRESS_DB_NAME: wordpress
      deploy:
        placement:
-         constraints: [node.role == worker]"
+         constraints: [node.role == worker]
+       replicas: 4"
 }
 	
 	docker::stack { 'test':
