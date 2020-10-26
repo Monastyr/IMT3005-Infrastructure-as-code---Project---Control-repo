@@ -22,7 +22,6 @@ class profile::docker::docker_master {
 				}
 			exec { 'database_ip':
 			command => '/bin/echo "database_ip: $(/usr/local/bin/consul members | grep db | tr [:] [" "] | cut -d " " -f8) " >> /etc/puppetlabs/code/shared-hieradata/common.yaml'
-			only if
 			}
 			
 	$database_ip = lookup(database_ip)		
