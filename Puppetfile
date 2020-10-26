@@ -58,3 +58,4 @@ mod 'puppet-unattended_upgrades', '4.0.0'
 
 #PROJECT
 mod 'puppetlabs-docker', '3.12.1'
+mod 'puppetlabs-mysql', '10.7.1'
