@@ -6,7 +6,7 @@ include '::mysql::server'
 	mysql::db { 'wordpress':
 	  user     => 'wordpress',
 	  password => 'wordpress',
-	  host     => '${ipaddress}',
+	  host     => 'facts['networking']['ip']',
 	  grant    => ['SELECT', 'UPDATE'],
 	}
 
