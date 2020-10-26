@@ -20,7 +20,11 @@ class profile::docker::docker_master {
 			exec { 'token2':
 				command => '/bin/echo  $( /usr/bin/docker swarm join-token worker | tail -2 | cut -d " " -f9) >> /etc/puppetlabs/code/shared-hieradata/common.yaml',
 				}
-		
+			exec { 'dir':
+			command => '/bin/echo "dir_ip: $(/usr/local/bin/consul |  grep dir | cut -d " " -f7) " >> /etc/puppetlabs/code/shared-hieradata/common.yaml'
+			}
+			
+			
 		
 	class {'docker::compose':
 	  ensure => present,
@@ -33,8 +37,6 @@ version: '3.3'
 
 services:
    wordpress:
-     depends_on:
-       - db
      image: wordpress:latest
      ports:
        - \"80:80\"
@@ -43,11 +45,11 @@ services:
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
+     volumes:
+      - "/mnt/wp-content:/var/www/html/wp-content"
      deploy:
-       replicas: 4
-volumes:
-    db_data: {}"
-	
+       placement:
+         constraints: [node.role == worker]
 }
 	
 	docker::stack { 'test':
