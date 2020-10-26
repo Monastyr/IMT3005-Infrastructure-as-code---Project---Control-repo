@@ -39,7 +39,7 @@ services:
    wordpress:
      image: wordpress:latest
      ports:
-       - \"8080:80\"
+       - \"80:80\"
      environment:
        WORDPRESS_DB_HOST: $database_ip:3306
        WORDPRESS_DB_USER: wordpress
