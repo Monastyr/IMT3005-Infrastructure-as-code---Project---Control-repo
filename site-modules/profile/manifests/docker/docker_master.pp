@@ -40,10 +40,13 @@ services:
        - db_data:/var/lib/mysql
      restart: always
      environment:
-       MYSQL_ROOT_PASSWORD: somewordpress
+       MYSQL_ROOT_PASSWORD: wordpress
        MYSQL_DATABASE: wordpress
        MYSQL_USER: wordpress
        MYSQL_PASSWORD: wordpress
+     deploy:
+      placement:
+        constraints: [node.role == worker]
 
    wordpress:
      depends_on:
@@ -57,6 +60,9 @@ services:
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
+     deploy:
+      placement:
+        constraints: [node.role == worker]
 volumes:
     db_data: {}"
 }
