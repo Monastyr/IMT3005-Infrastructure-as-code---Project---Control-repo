@@ -12,9 +12,10 @@ mysql::db {'wordpress':
 	user 			=> 'boss',
 	password 	=> 'boss',
 	dbname 	=> 'wordpress',
-	host 			=> ${fqdn},
-	grant 		=> ['ALL PRIVILEGES'],
+	host 			=> $::fqdn,
+	grant  		=> ['SELECT', 'UPDATE'],}
 }
+
 mysql_user { 'boss@%':
   ensure                   => 'present',
   password_hash => mysql_password('password'),
