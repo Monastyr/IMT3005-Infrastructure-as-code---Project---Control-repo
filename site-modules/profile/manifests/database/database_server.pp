@@ -9,11 +9,11 @@ class { '::mysql::server':
 
 
 mysql::db {'wordpress':
-	user 			=> 'boss@%',
-	password 	=> 'boss',
+	user 			=> 'user',
+	password 	=> 'user',
 	dbname 	=> 'wordpress',
 	host 			=> '%',
-	grant  		=> ['SELECT', 'UPDATE'],}
+	grant  		=> ['ALL PRIVILEGES'],}
 
 
 mysql_user { 'boss@%':
