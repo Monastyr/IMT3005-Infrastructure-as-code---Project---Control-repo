@@ -12,6 +12,9 @@ class profile::docker::docker_worker {
 	  token          => $token,
 	}
 	
+	class { 'gluster::client':
+  ensure => 'latest',
+}
 		
 }
 
