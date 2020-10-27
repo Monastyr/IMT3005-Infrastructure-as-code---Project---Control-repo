@@ -29,7 +29,7 @@ class profile::wordpress {
                               # in manifests/instance/app.pp
     wp_owner    => 'wordpress',
     wp_group    => 'wordpress',
-	db_host      => 'db.node.consul'
+	db_host      => 'db.node.consul',
     db_user     => 'wordpress',
     db_password => $wordpress_password,
     require     => [ Class['apache'], User['wordpress'] ],
