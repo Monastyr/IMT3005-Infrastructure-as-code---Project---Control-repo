@@ -3,7 +3,7 @@ class profile::database::database_server{
 
 include '::mysql::server'
 
-mysql::db { 'word':
+mysql::db { 'wordpress':
   user     => 'myuser',
   password => 'mypass',
   host     => '${fqdn}',
