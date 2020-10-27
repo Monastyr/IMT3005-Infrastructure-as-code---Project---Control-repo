@@ -2,7 +2,7 @@ class profile::wordpress {
 	
 	
 	
-	selboolean { 'httpd_can_network_connect_db':
+	selinux::boolean { 'httpd_can_network_connect_db':
     persistent => true,
     value => on,
   }
