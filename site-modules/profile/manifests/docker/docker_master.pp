@@ -33,43 +33,10 @@ class profile::docker::docker_master {
 		content => "
 version: '3.5'
 services:
-  dbcluster:
-    image: toughiq/mariadb-cluster
-    networks:
-      - dbnet
-    environment:
-      - DB_SERVICE_NAME=dbcluster
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=mydb
-      - MYSQL_USER=mydbuser
-      - MYSQL_PASSWORD=mydbpass
-    deploy:
-      mode: replicated
-      replicas: 4
-      placement:
-        constraints: [node.role == worker]
-
-  dblb:
-    image: toughiq/maxscale
-    networks:
-      - dbnet
-    ports:
-      - 3306:3306
-    environment:
-      - DB_SERVICE_NAME=dbcluster
-      - ENABLE_ROOT_USER=1
-    deploy:
-      mode: replicated
-      replicas: 1
-
   wordpress:
-     depends_on:
-       - dblb
-     image: wordpress:latest
-    networks:
-      - dbnet	 
+     image: wordpress:latest	 
      volumes:
-       - /mnt/wp-content:/var/www/html/wp-content
+       - wp-content:/var/www/html/wp-content
      ports:
        - \"80:80\"
      restart: always
@@ -82,15 +49,8 @@ services:
       replicas: 3
       placement:
         constraints: [node.role == worker]
-
 volumes:
-  vol_dbclient:
-    driver: local
-
-networks:
-  dbnet:
-    name: dbnet
-    driver: overlay"
+  wp-content:
 }
 	
 	docker::stack { 'test':
