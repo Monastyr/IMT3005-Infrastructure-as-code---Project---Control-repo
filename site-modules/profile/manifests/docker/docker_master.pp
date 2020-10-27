@@ -46,7 +46,7 @@ services:
     deploy:
       mode: replicated
       replicas: 4
-	  placement:
+      placement:
         constraints: [node.role == worker]
 
   dblb:
