@@ -31,27 +31,67 @@ class profile::docker::docker_master {
 	file { '/tmp/docker-compose.yml':
 		ensure  => present,
 		content => "
-version: '3.3'
-
+version: '3.5'
 services:
-   db:
-     image: mysql:5.7
-     volumes:
-       - /mnt/mysql:/var/lib/mysql
-     restart: always
-     environment:
-       MYSQL_ROOT_PASSWORD: wordpress
-       MYSQL_DATABASE: wordpress
-       MYSQL_USER: wordpress
-       MYSQL_PASSWORD: wordpress
-     deploy:
-       replicas: 3
-       placement:
-         constraints: [node.role == worker]
+  dbclient:
+    image: alpine
+    environment:
+      - BACKUP_ENABLED=1
+      - BACKUP_INTERVAL=60
+      - BACKUP_PATH=/data
+      - BACKUP_FILENAME=db_backup
+    networks:
+      - dbnet
+    entrypoint: |
+      sh -c 'sh -s << EOF
+      apk add --no-cache mysql-client
+      while true
+        do
+          if [ $$BACKUP_ENABLED == 1 ]
+            then
+              sleep $$BACKUP_INTERVAL
+              mkdir -p $$BACKUP_PATH/$$(date +%F)
+              echo "$$(date +%FT%H.%m) - Making Backup to : $$BACKUP_PATH/$$(date +%F)/$$BACKUP_FILENAME-$$(date +%FT%H.%m).sql.gz"
+              mysqldump -u root -ppassword -h dblb --all-databases | gzip > $$BACKUP_PATH/$$(date +%F)/$$BACKUP_FILENAME-$$(date +%FT%H.%m).sql.gz
+              find $$BACKUP_PATH -mtime 7 -delete
+          fi
+        done
+      EOF'
+    volumes:
+      - vol_dbclient:/data
+    deploy:
+      mode: replicated
+      replicas: 1
 
-   wordpress:
+  dbcluster:
+    image: toughiq/mariadb-cluster
+    networks:
+      - dbnet
+    environment:
+      - DB_SERVICE_NAME=dbcluster
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=mydb
+      - MYSQL_USER=mydbuser
+      - MYSQL_PASSWORD=mydbpass
+    deploy:
+      mode: replicated
+      replicas: 1
+
+  dblb:
+    image: toughiq/maxscale
+    networks:
+      - dbnet
+    ports:
+      - 3306:3306
+    environment:
+      - DB_SERVICE_NAME=dbcluster
+      - ENABLE_ROOT_USER=1
+    deploy:
+      mode: replicated
+      replicas: 1
+    wordpress:
      depends_on:
-       - db
+       - dblb
      image: wordpress:latest
      volumes:
        - /mnt/wp-content:/var/www/html/wp-content
@@ -67,8 +107,15 @@ services:
       replicas: 3
       placement:
         constraints: [node.role == worker]
+
 volumes:
-    db_data: {}"
+  vol_dbclient:
+    driver: local
+
+networks:
+  dbnet:
+    name: dbnet
+    driver: overlay"
 }
 	
 	docker::stack { 'test':
