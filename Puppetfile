@@ -59,6 +59,3 @@ mod 'puppet-unattended_upgrades', '4.0.0'
 #PROJECT
 mod 'puppetlabs-docker', '3.12.1'
 mod 'puppet-gluster', '5.0.0'
-mod 'puppetlabs-puppetdb', '7.6.0'
-mod 'puppetlabs-firewall', '2.7.0'
-mod 'puppetlabs-postgresql', '6.8.0'
