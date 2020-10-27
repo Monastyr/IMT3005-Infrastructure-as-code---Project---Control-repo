@@ -14,7 +14,7 @@ mysql::db {'wordpress':
 	dbname 	=> 'wordpress',
 	host 			=> $::fqdn,
 	grant  		=> ['SELECT', 'UPDATE'],}
-}
+
 
 mysql_user { 'boss@%':
   ensure                   => 'present',
@@ -29,8 +29,6 @@ mysql_grant { 'boss@%/*.*':
  table      => '*.*',
  user       => 'boss@%',
 }
-
-
 
 
 }
