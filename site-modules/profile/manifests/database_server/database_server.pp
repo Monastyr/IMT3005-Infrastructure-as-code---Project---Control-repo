@@ -1,4 +1,4 @@
-class profile::database::database_server{
+class profile::database_server::database_server{
 
 
 include '::mysql::server'
