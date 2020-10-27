@@ -1,5 +1,6 @@
 class profile::wordpress { 
 	
+include::profile::database::database_server
 $mysql_password        = 'password'
 $wordpress_password    = 'password'
 
@@ -19,7 +20,6 @@ $wordpress_password    = 'password'
   }
 
 
-  # Wordpress
   user { 'wordpress':
     ensure => 'present'
   }
@@ -31,7 +31,7 @@ $wordpress_password    = 'password'
     wp_group    => 'wordpress',
     db_user     => 'wordpress',
     db_password => $wordpress_password,
-    require     => [ Class['apache'], Class['::profile::database::database_server::mysql::server'], User['wordpress'] ],
+    require     => [ Class['apache'], Class['mysql::server'], User['wordpress'] ],
   }
 
 }
