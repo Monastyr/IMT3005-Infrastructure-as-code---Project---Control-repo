@@ -33,21 +33,6 @@ class profile::docker::docker_master {
 		content => "
 version: '3.5'
 services:
-  dbclient:
-    image: alpine
-    environment:
-      - BACKUP_ENABLED=1
-      - BACKUP_INTERVAL=60
-      - BACKUP_PATH=/data
-      - BACKUP_FILENAME=db_backup
-    networks:
-      - dbnet
-    volumes:
-      - vol_dbclient:/data
-    deploy:
-      mode: replicated
-      replicas: 1
-
   dbcluster:
     image: toughiq/mariadb-cluster
     networks:
@@ -60,7 +45,9 @@ services:
       - MYSQL_PASSWORD=mydbpass
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: 4
+	  placement:
+        constraints: [node.role == worker]
 
   dblb:
     image: toughiq/maxscale
@@ -74,10 +61,13 @@ services:
     deploy:
       mode: replicated
       replicas: 1
+
   wordpress:
      depends_on:
        - dblb
      image: wordpress:latest
+    networks:
+      - dbnet	 
      volumes:
        - /mnt/wp-content:/var/www/html/wp-content
      ports:
