@@ -42,8 +42,8 @@ services:
      restart: always
      environment:
        WORDPRESS_DB_HOST: db.node.consul:3306
-       WORDPRESS_DB_USER: wordpress
-       WORDPRESS_DB_PASSWORD: wordpress
+       WORDPRESS_DB_USER: user
+       WORDPRESS_DB_PASSWORD: user
        WORDPRESS_DB_NAME: wordpress
      deploy:
       replicas: 3
