@@ -42,21 +42,6 @@ services:
       - BACKUP_FILENAME=db_backup
     networks:
       - dbnet
-    entrypoint: |
-      sh -c 'sh -s << EOF
-      apk add --no-cache mysql-client
-      while true
-        do
-          if [ $$BACKUP_ENABLED == 1 ]
-            then
-              sleep $$BACKUP_INTERVAL
-              mkdir -p $$BACKUP_PATH/$$(date +%F)
-              echo '$$(date +%FT%H.%m) - Making Backup to : $$BACKUP_PATH/$$(date +%F)/$$BACKUP_FILENAME-$$(date +%FT%H.%m).sql.gz'
-              mysqldump -u root -ppassword -h dblb --all-databases | gzip > $$BACKUP_PATH/$$(date +%F)/$$BACKUP_FILENAME-$$(date +%FT%H.%m).sql.gz
-              find $$BACKUP_PATH -mtime 7 -delete
-          fi
-        done
-      EOF'
     volumes:
       - vol_dbclient:/data
     deploy:
