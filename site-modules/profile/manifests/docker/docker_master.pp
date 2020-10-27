@@ -89,7 +89,7 @@ services:
     deploy:
       mode: replicated
       replicas: 1
-    wordpress:
+  wordpress:
      depends_on:
        - dblb
      image: wordpress:latest
