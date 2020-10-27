@@ -15,7 +15,7 @@ node 'mon.node.consul' {
 }
 
 node 'db.node.consul' {
-  include ::role::database
+  include ::role::database_server
 }
 
 node /(ws)\d?.node.consul/ {
