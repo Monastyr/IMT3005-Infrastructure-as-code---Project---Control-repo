@@ -6,7 +6,7 @@ class { '::mysql::server':
   restart                		  => true,
   override_options        => $override_options
 }
-
+awdawdaw
 
 $override_options = {
   'mysqld' => {
