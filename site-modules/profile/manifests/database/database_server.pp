@@ -9,16 +9,16 @@ class { '::mysql::server':
 
 
 mysql::db {'wordpress':
-	user 			=> 'boss',
+	user 			=> 'boss@%',
 	password 	=> 'boss',
 	dbname 	=> 'wordpress',
-	host 			=> $::fqdn,
+	host 			=> '%',
 	grant  		=> ['SELECT', 'UPDATE'],}
 
 
 mysql_user { 'boss@%':
   ensure                   => 'present',
-  password_hash => mysql_password('password'),
+  password_hash => mysql_password('boss'),
 } ->	
 
 
