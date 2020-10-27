@@ -1,18 +1,13 @@
 class profile::database::database_server{
 
 
-class { '::mysql::server':
-  root_password           => 'password',
-  restart                		  => true,
-  override_options => { 'mysqld' => { 'bind_address' => 'db.node.consul' } }
-}
+class { 'mysql::server':
+    root_password =>'password',
+  }
+  class { 'mysql::bindings':  # if added late, need to restart apache service
+    php_enable => true,
+    php_package_name => 'php-mysql',
+  }
 
-}
-mysql::db { 'wordpress':
-  user     => 'wordpress',
-  password => 'wordpress',
-  host     => 'db.node.consul',
-  grant    => ['SELECT', 'UPDATE'],
-}
 
 }
