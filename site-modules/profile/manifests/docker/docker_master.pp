@@ -66,7 +66,7 @@ services:
      deploy:
       replicas: 3
       placement:
-        constraints: [node.role == worker]
+        constraints: [node.role == worker]"
 }
 	
 	docker::stack { 'test':
