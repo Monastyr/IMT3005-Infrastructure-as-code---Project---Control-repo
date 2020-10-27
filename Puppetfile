@@ -58,6 +58,6 @@ mod 'puppet-unattended_upgrades', '4.0.0'
 
 #PROJECT
 mod 'puppetlabs-docker', '3.12.1'
-mod 'puppet-gluster', '5.0.0'
+#mod 'puppet-gluster', '5.0.0'
 mod 'puppetlabs-mysql', '10.7.1'
 mod 'praekeltfoundation-gluster', '0.2.2'
