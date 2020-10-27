@@ -82,12 +82,6 @@ volumes:
 	class { 'postgresql::server':
 }
 
-postgresql::server::db { 'mydatabasename':
-  user     => 'mydatabaseuser',
-  password => postgresql::postgresql_password('mydatabaseuser', 'mypassword'),
-}
-	
-	
 	class { 'puppetdb': 
 		listen_port => '8081',
 	}
