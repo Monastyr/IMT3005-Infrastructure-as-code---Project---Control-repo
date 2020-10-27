@@ -78,13 +78,5 @@ volumes:
 		require => [Class['docker'], File['/tmp/docker-compose.yml'], ], 
 	}
 	
-class { 'gluster':
-  package_ensure => 'latest',
-  service_ensure => 'running',
-}
-
-gluster_peer { ['ws1.node.consul', 'ws2.node.consul', 'ws3.node.consul']:
-    ensure => present,
-}
 
 }
