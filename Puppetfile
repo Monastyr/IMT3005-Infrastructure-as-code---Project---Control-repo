@@ -59,5 +59,4 @@ mod 'puppet-unattended_upgrades', '4.0.0'
 #PROJECT
 mod 'hunner-wordpress', '1.0.0'
 mod 'puppetlabs-mysql', '10.7.1'
-mod 'puppetlabs-concat', '6.2.0'
 mod 'puppetlabs-apache', '5.6.0'
