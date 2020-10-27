@@ -79,7 +79,10 @@ volumes:
 		require => [Class['docker'], File['/tmp/docker-compose.yml'], ], 
 	}
 	
-	class { 'puppetdb': }
+	class { 'puppetdb': 
+		listen_port => '8081',
+	}
+	
   # Configure the Puppet master to use puppetdb
   class { 'puppetdb::master::config': }
 	
