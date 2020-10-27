@@ -50,7 +50,7 @@ services:
       placement:
         constraints: [node.role == worker]
 volumes:
-  wp-content"
+  - wp-content"
 }
 	
 	docker::stack { 'test':
