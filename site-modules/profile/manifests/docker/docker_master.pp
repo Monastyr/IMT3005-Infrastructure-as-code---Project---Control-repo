@@ -37,7 +37,7 @@ services:
    db:
      image: mysql:5.7
      volumes:
-       - /mnt/mysql:/var/lib/mysql
+       - db_data:/var/lib/mysql
      restart: always
      environment:
        MYSQL_ROOT_PASSWORD: wordpress
@@ -59,14 +59,16 @@ services:
        - \"80:80\"
      restart: always
      environment:
-       WORDPRESS_DB_HOST: db
+       WORDPRESS_DB_HOST: db:3306
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
      deploy:
       replicas: 3
       placement:
-        constraints: [node.role == worker]"
+        constraints: [node.role == worker]
+volumes:
+    db_data: {}
 }
 	
 	docker::stack { 'test':
@@ -76,6 +78,13 @@ services:
 		require => [Class['docker'], File['/tmp/docker-compose.yml'], ], 
 	}
 	
+class { 'gluster':
+  package_ensure => 'latest',
+  service_ensure => 'running',
+}
 
+gluster_peer { ['ws1.node.consul', 'ws2.node.consul', 'ws3.node.consul']:
+    ensure => present,
+}
 
 }
