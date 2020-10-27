@@ -79,6 +79,15 @@ volumes:
 		require => [Class['docker'], File['/tmp/docker-compose.yml'], ], 
 	}
 	
+	class { 'postgresql::server':
+}
+
+postgresql::server::db { 'mydatabasename':
+  user     => 'mydatabaseuser',
+  password => postgresql::postgresql_password('mydatabaseuser', 'mypassword'),
+}
+	
+	
 	class { 'puppetdb': 
 		listen_port => '8081',
 	}
@@ -86,6 +95,13 @@ volumes:
   # Configure the Puppet master to use puppetdb
   class { 'puppetdb::master::config': }
 	
+	class { 'puppetdb::master::routes':
+  puppet_confdir => '/etc/puppet'
+}
+
+class { 'puppetdb::master::storeconfigs':
+  puppet_conf => '/etc/puppet/puppet.conf'
+}
 	
 
 }
