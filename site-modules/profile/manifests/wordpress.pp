@@ -4,7 +4,7 @@ class profile::wordpress {
 	
 	selinux::boolean { 'httpd_can_network_connect_db':
     persistent => true,
-    value => on,
+    ensure => on,
   }
   
 	class { 'apache': }
