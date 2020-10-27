@@ -30,8 +30,8 @@ class profile::wordpress {
     wp_owner    => 'wordpress',
     wp_group    => 'wordpress',
 	db_host      => 'db.node.consul',
-    db_user     => 'wordpress',
-    db_password => $wordpress_password,
+    db_user     => 'boss',
+    db_password => 'boss',
     require     => [ Class['apache'], User['wordpress'] ],
   }
 
