@@ -68,7 +68,7 @@ services:
       placement:
         constraints: [node.role == worker]
 volumes:
-    db_data: {}
+    db_data: {}"
 }
 	
 	docker::stack { 'test':
