@@ -49,6 +49,8 @@ services:
       replicas: 3
       placement:
         constraints: [node.role == worker]
+volumes:
+      wp-content: {}"
 }
 	
 	docker::stack { 'test':
