@@ -79,7 +79,9 @@ volumes:
 		require => [Class['docker'], File['/tmp/docker-compose.yml'], ], 
 	}
 	
-	
+	class { 'puppetdb': }
+  # Configure the Puppet master to use puppetdb
+  class { 'puppetdb::master::config': }
 	
 	
 
