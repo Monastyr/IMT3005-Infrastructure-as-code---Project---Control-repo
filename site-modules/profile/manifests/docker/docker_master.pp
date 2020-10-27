@@ -37,7 +37,7 @@ services:
    db:
      image: mysql:5.7
      volumes:
-       - db_data:/var/lib/mysql
+       - /mnt/mysql:/var/lib/mysql
      restart: always
      environment:
        MYSQL_ROOT_PASSWORD: wordpress
@@ -54,7 +54,7 @@ services:
        - db
      image: wordpress:latest
      volumes:
-       - wp_data:/var/www/html/wp-content
+       - /mnt/wp-content:/var/www/html/wp-content
      ports:
        - \"80:80\"
      restart: always
@@ -67,9 +67,6 @@ services:
       replicas: 3
       placement:
         constraints: [node.role == worker]
-volumes:
-    db_data: {}
-    wp_data: {}"
 }
 	
 	docker::stack { 'test':
