@@ -1,6 +1,5 @@
 class profile::wordpress { 
 	
-include::profile::database::database_server
 $mysql_password        = 'password'
 $wordpress_password    = 'password'
 
