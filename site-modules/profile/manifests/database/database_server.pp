@@ -1,7 +1,7 @@
 class profile::database::database_server{
 
 
-class { '::mysql::server':
+class { '::mysql:ddd:server':
   root_password           => 'password',
   restart                		  => true,
   override_options        => $override_options
