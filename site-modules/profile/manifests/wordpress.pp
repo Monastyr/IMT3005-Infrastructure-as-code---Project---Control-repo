@@ -1,51 +1,47 @@
 class profile::wordpress { 
 	
 	
-	class { 'docker':
-    dns => '129.241.0.201',
-	}
-
-	class {'docker::compose':
-	  ensure => present,
-	}
-
-	file { '/tmp/docker-compose.yml':
-		ensure  => present,
-		content => "
-version: '3.3'
-
-services:
-   db:
-     image: mysql:5.7
-     volumes:
-       - db_data:/var/lib/mysql
-     restart: always
-     environment:
-       MYSQL_ROOT_PASSWORD: somewordpress
-       MYSQL_DATABASE: wordpress
-       MYSQL_USER: wordpress
-       MYSQL_PASSWORD: wordpress
-
-   wordpress:
-     depends_on:
-       - db
-     image: wordpress:latest
-     ports:
-       - \"80:80\"
-     restart: always
-     environment:
-       WORDPRESS_DB_HOST: db:3306
-       WORDPRESS_DB_USER: wordpress
-       WORDPRESS_DB_PASSWORD: wordpress
-       WORDPRESS_DB_NAME: wordpress
-volumes:
-    db_data: {}"
-	}
+	$mysql_password = 'put_in_hiera'
+	$wordpress_password = 'put_also_in_hiera'
 	
-	docker_compose { 'test':
-		compose_files => ['/tmp/docker-compose.yml'],
-		ensure  => present,
-		require => [Class['docker'], File['/tmp/docker-compose.yml'], ], 
+	# PHP-enabled web server
+	class { 'apache':
+	default_vhost => false,
+	mpm_module => 'prefork',
 	}
-	
+	class { 'apache::mod::php':
+	php_version => '7.2',
+	}
+	# Virtual Host for Wordpress
+	apache::vhost { $::fqdn:
+	port => '80',
+	docroot => '/opt/wordpress',
+	manage_docroot => false,
+	}
+	# MySQL server
+	class { 'mysql::server':
+	root_password => $mysql_password,
+	}
+	class { 'mysql::bindings': # if added late, need to restart apache service
+	php_enable => true,
+	php_package_name => 'php-mysql',
+	}
+	# Wordpress
+	user { 'wordpress':
+	ensure => 'present'
+	}
+	class { 'wordpress':
+	version => '4.9.7', # if changed, delete index.php, rerun puppet
+	# due to creates => "${install_dir}/index.php"
+	24
+	4.3. LAB TUTORIALS
+	# in manifests/instance/app.pp
+	wp_owner => 'wordpress',
+	wp_group => 'wordpress',
+	db_user => 'wordpress',
+	db_password => $wordpress_password,
+	require => [ Class['apache'], Class['mysql::server'], User['wordpress'] ],
 }
+
+	
+
