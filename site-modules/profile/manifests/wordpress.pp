@@ -19,14 +19,6 @@ class profile::wordpress {
     manage_docroot => false,
   }
 
-  # MySQL server
-  class { 'mysql::server':
-    root_password => $mysql_password,
-  }
-  class { 'mysql::bindings':  # if added late, need to restart apache service
-    php_enable => true,
-    php_package_name => 'php-mysql',
-  }
 
   # Wordpress
   user { 'wordpress':
@@ -40,7 +32,7 @@ class profile::wordpress {
     wp_group    => 'wordpress',
     db_user     => 'wordpress',
     db_password => $wordpress_password,
-    require     => [ Class['apache'], Class['mysql::server'], User['wordpress'] ],
+    require     => [ Class['apache'], User['wordpress'] ],
   }
 
 
