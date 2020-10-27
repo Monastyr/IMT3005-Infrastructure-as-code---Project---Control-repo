@@ -27,6 +27,10 @@ mysql_grant { 'boss@%/*.*':
  options    => ['GRANT'],
  privileges => ['ALL PRIVILEGES'],
  table      => '*.*',
- user       => 'user@%',
+ user       => 'boss@%',
 }
+
+
+
+
 }
