@@ -3,7 +3,7 @@ class profile::database::database_server{
 
 class { '::mysql::server':
   root_password           => 'password',
-  override_options        => $override_options,
+  override_options => {'mysqld' => {'bind-address' => '0.0.0.0'}},
   }
 
 
@@ -14,7 +14,6 @@ mysql::db {'wordpress':
 	dbname 	=> 'wordpress',
 	host 			=> '%',
 	grant  		=> ['ALL PRIVILEGES'],
-	override_options => {'mysqld' => {'bind-address' => '0.0.0.0'}},
 }
 
 
