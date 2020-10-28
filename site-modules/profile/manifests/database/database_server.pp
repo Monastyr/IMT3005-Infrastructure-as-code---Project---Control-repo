@@ -14,7 +14,7 @@ mysql::db {'wordpress':
 	dbname 	=> 'wordpress',
 	host 			=> '%',
 	grant  		=> ['ALL PRIVILEGES'],
-	override_options => { 'mysqld' => {'bind-address' => '0.0.0.0'}}, 
+	override_options => 'mysqld' => {'bind-address' => '0.0.0.0'}, 
 }
 
 
