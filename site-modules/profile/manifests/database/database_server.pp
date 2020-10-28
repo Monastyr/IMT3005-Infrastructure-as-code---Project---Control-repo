@@ -16,18 +16,18 @@ mysql::db {'wordpress':
 	grant  		=> ['ALL PRIVILEGES'],}
 
 
-mysql_user { 'boss@%':
+mysql_user { 'boss2@%':
   ensure                   => 'present',
   password_hash => mysql_password('boss'),
 } ->	
 
 
-mysql_grant { 'boss@%/*.*':
+mysql_grant { 'boss2@%/*.*':
  ensure     => 'present',
  options    => ['GRANT'],
  privileges => ['ALL PRIVILEGES'],
  table      => '*.*',
- user       => 'boss@%',
+ user       => 'boss2@%',
 }
 
 
