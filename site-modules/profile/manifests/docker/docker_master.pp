@@ -41,8 +41,8 @@ services:
        - \"80:80\"
      restart: always
      environment:
-       WORDPRESS_DB_HOST: db.node.consul:3306
-       WORDPRESS_DB_USER: boss2
+       WORDPRESS_DB_HOST: db1.node.consul:3306
+       WORDPRESS_DB_USER: boss
        WORDPRESS_DB_PASSWORD: boss
        WORDPRESS_DB_NAME: wordpress
      deploy:
