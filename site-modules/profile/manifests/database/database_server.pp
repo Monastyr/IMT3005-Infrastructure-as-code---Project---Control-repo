@@ -6,14 +6,20 @@ class { '::mysql::server':
   override_options        => $override_options,
   }
 
-
+$override_options = {
+	'mysqld' => {
+		'bind-address' => '0.0.0.0',
+	}
+}
 
 mysql::db {'wordpress':
 	user 			=> 'boss',
 	password 	=> 'boss',
 	dbname 	=> 'wordpress',
 	host 			=> '%',
-	grant  		=> ['ALL PRIVILEGES'],}
+	grant  		=> ['ALL PRIVILEGES'],
+	override_options =>
+}
 
 
 #mysql_user { 'boss2@%':
