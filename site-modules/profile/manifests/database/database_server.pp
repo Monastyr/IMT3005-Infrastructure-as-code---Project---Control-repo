@@ -8,7 +8,9 @@ class { '::mysql::server':
 
 $override_options = {
 		'mysqld' => {
-			'bind-address' => '0.0.0.0',}}
+			'bind-address' => '0.0.0.0',
+		}
+}
 
 
 
@@ -19,7 +21,7 @@ mysql::db {'wordpress':
 	dbname 	=> 'wordpress',
 	host 			=> '%',
 	grant  		=> ['ALL PRIVILEGES'],
-	override_options =>
+	override_options => $overide_options,
 }
 
 
