@@ -9,26 +9,26 @@ class { '::mysql::server':
 
 
 mysql::db {'wordpress':
-	user 			=> 'user',
-	password 	=> 'user',
+	user 			=> 'boss',
+	password 	=> 'boss',
 	dbname 	=> 'wordpress',
 	host 			=> '%',
 	grant  		=> ['ALL PRIVILEGES'],}
 
 
-mysql_user { 'boss@%':
-  ensure                   => 'present',
-  password_hash => mysql_password('boss'),
-} ->	
+#mysql_user { 'boss@%':
+  #ensure                   => 'present',
+  #password_hash => mysql_password('boss'),
+#} ->	
 
 
-mysql_grant { 'boss@%/*.*':
- ensure     => 'present',
- options    => ['GRANT'],
- privileges => ['ALL PRIVILEGES'],
- table      => '*.*',
- user       => 'boss@%',
-}
+#mysql_grant { 'boss@%/*.*':
+# ensure     => 'present',
+# options    => ['GRANT'],
+ #privileges => ['ALL PRIVILEGES'],
+# table      => '*.*',
+# user       => 'boss@%',
+#}
 
 
 }
