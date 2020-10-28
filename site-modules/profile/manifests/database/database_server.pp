@@ -7,10 +7,11 @@ class { '::mysql::server':
   }
 
 $override_options = {
-	'mysqld' => {
-		'bind-address' => '0.0.0.0',
-	}
-}
+		'mysqld' => {
+			'bind-address' => '0.0.0.0',}}
+
+
+
 
 mysql::db {'wordpress':
 	user 			=> 'boss',
