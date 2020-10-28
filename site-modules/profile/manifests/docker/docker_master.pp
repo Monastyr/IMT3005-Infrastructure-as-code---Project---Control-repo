@@ -46,7 +46,7 @@ services:
        WORDPRESS_DB_PASSWORD: boss
        WORDPRESS_DB_NAME: wordpress
      deploy:
-      replicas: 3
+      replicas: 9
       placement:
         constraints: [node.role == worker]
 volumes:
