@@ -35,7 +35,7 @@ services:
      volumes:
        - wp-content:/var/www/html/wp-content
      ports:
-       - "80"
+       - '80'
      restart: always
      environment:
        WORDPRESS_DB_HOST: db1.node.consul:3306
