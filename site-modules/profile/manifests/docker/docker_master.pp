@@ -35,7 +35,7 @@ services:
      volumes:
        - wp-content:/var/www/html/wp-content
      ports:
-       - \"80:80\"
+       - "80"
      restart: always
      environment:
        WORDPRESS_DB_HOST: db1.node.consul:3306
@@ -52,7 +52,29 @@ services:
         - 'traefik.docker.network=wp_default'
         - 'traefik.port=80'
         - 'traefik.frontend.rule=PathPrefix:/'
-        - 'traefik.backend.loadbalancer.sticky=true'		
+        - 'traefik.backend.loadbalancer.sticky=true'
+
+  loadbalancer:
+     image: traefik:1.7.26
+     command: --docker \
+       --docker.swarmmode \
+       --docker.watch \
+       --web \
+       --loglevel=DEBUG
+     ports:
+       - \"80:80\"
+       - \"8080:8080\"
+     volumes:
+       - /var/run/docker.sock:/var/run/docker.sock
+     deploy:
+       restart_policy:
+         condition: any
+       mode: replicated
+       replicas: 1
+       update_config:
+         delay: 2s
+       placement:
+          constraints: [node.role == manager]
 volumes:
       wp-content: {}"
 }
