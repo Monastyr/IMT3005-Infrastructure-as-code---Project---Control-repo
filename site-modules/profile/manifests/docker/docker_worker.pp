@@ -11,8 +11,7 @@ class profile::docker::docker_worker {
 	  manager_ip     =>$manager_ip,
 	  token          => $token,
 	}
-	
-		
+			
 }
 
 
