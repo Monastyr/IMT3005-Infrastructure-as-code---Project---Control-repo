@@ -53,8 +53,6 @@ services:
         - 'traefik.port=80'
         - 'traefik.frontend.rule=PathPrefix:/'
         - 'traefik.backend.loadbalancer.sticky=true'		
-		
-  
 volumes:
       wp-content: {}"
 }
