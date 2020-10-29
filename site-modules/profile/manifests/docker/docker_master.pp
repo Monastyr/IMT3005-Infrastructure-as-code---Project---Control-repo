@@ -20,9 +20,6 @@ class profile::docker::docker_master {
 			exec { 'token2':
 				command => '/bin/echo  $( /usr/bin/docker swarm join-token worker | tail -2 | cut -d " " -f9) >> /etc/puppetlabs/code/shared-hieradata/common.yaml',
 				}
-			#exec { 'database_ip':
-			#command => '/bin/echo "database_ip: $(/usr/local/bin/consul members | grep db | tr [:] [" "] | cut -d " " -f8) " >> /etc/puppetlabs/code/shared-hieradata/common.yaml'
-			#}
 			
 	class {'docker::compose':
 	  ensure => present,
@@ -49,6 +46,15 @@ services:
       replicas: 3
       placement:
         constraints: [node.role == worker]
+      update_config:
+        delay: 2s
+      labels:
+        - "traefik.docker.network=net"
+        - "traefik.port=80"
+        - "traefik.frontend.rule=PathPrefix:/"
+        - "traefik.backend.loadbalancer.sticky=true"		
+		
+  
 volumes:
       wp-content: {}"
 }
