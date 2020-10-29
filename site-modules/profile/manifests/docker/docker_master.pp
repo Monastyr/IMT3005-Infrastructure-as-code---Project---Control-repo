@@ -49,10 +49,10 @@ services:
       update_config:
         delay: 2s
       labels:
-        - "traefik.docker.network=wp_default"
-        - "traefik.port=80"
-        - "traefik.frontend.rule=PathPrefix:/"
-        - "traefik.backend.loadbalancer.sticky=true"		
+        - 'traefik.docker.network=wp_default'
+        - 'traefik.port=80'
+        - 'traefik.frontend.rule=PathPrefix:/'
+        - 'traefik.backend.loadbalancer.sticky=true'		
 		
   
 volumes:
