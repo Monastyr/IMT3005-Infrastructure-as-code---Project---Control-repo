@@ -14,7 +14,10 @@ node 'mon.node.consul' {
   include ::role::monitoring_server
 }
 
+node /(db)\d?.node.consul/ {
+  include ::role::database_server
+}
+
 node /(ws)\d?.node.consul/ {
   include ::role::wordpress_server
 }
-
