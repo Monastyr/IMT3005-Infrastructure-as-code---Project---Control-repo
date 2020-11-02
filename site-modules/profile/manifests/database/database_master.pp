@@ -19,7 +19,7 @@ class profile::database::database_master{
         'read_only'               => 'OFF',
         'binlog-format'           => 'ROW',
         'log-error'               => '/var/log/mysql/error.log',
-        'report_host'             => ${fqdn},
+        'report_host'             => $facts['fqdn'],
         'innodb_buffer_pool_size' => '512M'
       },
       'mysqld_safe' => {
