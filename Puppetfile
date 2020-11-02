@@ -62,3 +62,6 @@ mod 'puppetlabs-mysql', '10.7.1'
 mod 'puppetlabs-apache', '5.6.0'
 mod 'puppetlabs-docker', '3.12.1'
 mod 'fraenki-galera', '2.2.0'
+mod 'puppetlabs-firewall', '2.7.0'  #Galera dep.
+mod 'puppetlabs-xinetd', '3.3.0'  #Galera dep.
+mod 'puppet-epel', '3.0.1'  #Galera dep.
