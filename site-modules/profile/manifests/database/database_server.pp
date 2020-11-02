@@ -1,20 +1,20 @@
 class profile::database::database_server{
 
 
-class { '::mysql::server':
-  root_password           => 'password',
-  override_options => {'mysqld' => {'bind-address' => '0.0.0.0'}},
-  }
+#class { '::mysql::server':
+#  root_password           => 'password',
+#  override_options => {'mysqld' => {'bind-address' => '0.0.0.0'}},
+#}
 
 
 
-mysql::db {'wordpress':
-	user 			=> 'boss',
-	password 	=> 'boss',
-	dbname 	=> 'wordpress',
-	host 			=> '%',
-	grant  		=> ['ALL PRIVILEGES'],
-}
+#mysql::db {'wordpress':
+#	user 			=> 'boss',
+#	password 	=> 'boss',
+#	dbname 	=> 'wordpress',
+#	host 			=> '%',
+#	grant  		=> ['ALL PRIVILEGES'],
+#}
 
 
 class { 'galera':
