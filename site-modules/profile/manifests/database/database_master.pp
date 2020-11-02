@@ -26,20 +26,16 @@ class profile::database::database_master{
         'log-error'               => '/var/log/mysql/error.log'
       }
     }
-
- # create slave user
- mysql_user { 'slave@%':
+mysql_user { 'slave@%':
       ensure        => 'present',
       password_hash => mysql_password("password")
-  }
+    } 
 
  # grant privileges for slave user
- mysql_grant { 'slave@%':
+mysql_grant { 'slave@%':
       ensure        => 'present',
       privileges    => ['REPLICATION SLAVE'],
       table         => '*.*',
       user          => "slave@%"
   }
 
-
-}

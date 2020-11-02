@@ -16,6 +16,15 @@ mysql::db {'wordpress':
 	grant  		=> ['ALL PRIVILEGES'],
 }
 
+
+class { 'galera':
+  cluster_name    => 'mycluster',
+  galera_servers  => ['db2.node.consul'],
+  galera_master   => 'd1.example.com',
+  root_password   => 'pa$$w0rd',
+  status_password => 'pa$$w0rd',
+}
+
 #mysql_user { 'boss2@%':
   #ensure                   => 'present',
   #password_hash => mysql_password('boss'),
