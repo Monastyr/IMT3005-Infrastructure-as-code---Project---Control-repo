@@ -1,7 +1,7 @@
 class profile::glusterfs::glusterfs{
 
 	
-	  file { '/export/brick1/brick:
+	  file { '/export/brick1/brick':
 		ensure => 'directory',
 	  }
 	  
