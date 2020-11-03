@@ -36,7 +36,7 @@ class profile::glusterfs::glusterfs{
 		require => Gluster::Peer[ [ 'manager.node.consul', 'ws1.node.consul', 'ws2.node.consul', 'ws3.node.consul' ] ],
 	  }
 	
-	gluster::mount { '/mnt':
+	gluster::mount { '/mnt/':
 	  volume  => 'localhost:/g0',
 	  atboot  => true,
 	  options => 'noatime,nodev,noexec,nosuid',
