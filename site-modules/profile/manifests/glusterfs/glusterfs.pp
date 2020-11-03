@@ -10,8 +10,8 @@ class profile::glusterfs::glusterfs{
 	  class { ::gluster::install:
 		server  => true,
 		client  => true,
-		repo    => true,
-		version => '3.5.1-1.el6',
+		repo    => false,
+		version => '3.5.2',
 	  }
 
 	  # make sure the service is started
