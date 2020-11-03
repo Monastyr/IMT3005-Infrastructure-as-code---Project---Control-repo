@@ -11,7 +11,6 @@ class profile::glusterfs::glusterfs{
 		server  => true,
 		client  => true,
 		repo    => false,
-		version => '3.5.2',
 	  }
 
 	  # make sure the service is started
