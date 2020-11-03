@@ -28,7 +28,7 @@ class profile::glusterfs::glusterfs{
 
 	  gluster::volume { 'g0':
 		replica => 4,
-		bricks  => [ manager.node.consul:/export/brick1/brick',
+		bricks  => [ 'manager.node.consul:/export/brick1/brick',
 						 'ws1.node.consul:/export/brick1/brick', ],
 		options => [ 'nfs.disable: true' ],
 		require => Gluster::Peer[ [ 'manager.node.consul', 'ws1.node.consul' ] ],
