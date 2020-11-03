@@ -26,7 +26,7 @@ class profile::glusterfs::glusterfs{
 	  }
 
 	  gluster::volume { 'g0':
-		replica => 3,
+		replica => 4,
 		bricks  => [ 'manager.node.consul:/export/brick1/brick',
 						 'ws1.node.consul:/export/brick1/brick',
 						 'ws2.node.consul:/export/brick1/brick',
