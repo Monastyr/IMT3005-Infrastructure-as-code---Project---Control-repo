@@ -20,7 +20,7 @@ class profile::glusterfs::glusterfs{
 	  }
 
 	  # now establish a peering relationship
-	  gluster::peer { [ 'manager.node.consul', 'ws1.node.consul', 'ws2.node.consul', 'ws3.node.consul' ]:
+	  gluster::peer { [ 'ws1.node.consul', 'ws2.node.consul', 'ws3.node.consul' ]:
 		pool    => 'production',
 		require => Class[::gluster::service],
 	  }
@@ -33,7 +33,7 @@ class profile::glusterfs::glusterfs{
 						 'ws3.node.consul:/export/brick1/brick',],
 		options => [ 'nfs.disable: true' ],
 		force => true,
-		require => Gluster::Peer[ [ 'manager.node.consul', 'ws1.node.consul', 'ws2.node.consul', 'ws3.node.consul' ] ],
+		require => Gluster::Peer[ [ 'ws1.node.consul', 'ws2.node.consul', 'ws3.node.consul' ] ],
 	  }
 	
 	gluster::mount { '/mnt/':
