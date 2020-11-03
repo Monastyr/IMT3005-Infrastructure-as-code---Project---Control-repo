@@ -65,3 +65,4 @@ mod 'puppetlabs-docker', '3.12.1'
 #mod 'puppetlabs-firewall', '2.7.0'  #Galera dep
 #mod 'puppetlabs-xinetd', '3.3.0'  #Galera dep.
 #mod 'puppet-epel', '3.0.1'  #Galera dep.
+mod 'puppet-gluster', '5.0.0'
