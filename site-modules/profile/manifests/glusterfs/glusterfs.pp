@@ -1,5 +1,11 @@
 class profile::glusterfs::glusterfs{
 
+	
+	  file { '/export/brick1/brick:
+		ensure => 'directory',
+	  }
+	  
+	  
 	  # first, install the upstream Gluster packages
 	  class { ::gluster::install:
 		server  => true,
@@ -15,15 +21,15 @@ class profile::glusterfs::glusterfs{
 	  }
 
 	  # now establish a peering relationship
-	  gluster::peer { [ 'srv1.local', 'srv2.local' ]:
+	  gluster::peer { [ 'manager.node.consul', 'ws1.node.consul' ]:
 		pool    => 'production',
 		require => Class[::gluster::service],
 	  }
 
 	  gluster::volume { 'g0':
-		replica => 2,
-		bricks  => [ 'srv1.local:/export/brick1/brick',
-					 'srv2.local:/export/brick1/brick', ],
+		replica => 4,
+		bricks  => [ manager.node.consul:/export/brick1/brick',
+						 'ws1.node.consul:/export/brick1/brick', ],
 		options => [ 'nfs.disable: true' ],
 		require => Gluster::Peer[ [ 'srv1.local', 'srv2.local' ] ],
 	  }
