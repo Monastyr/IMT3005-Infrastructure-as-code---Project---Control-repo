@@ -24,6 +24,11 @@ class profile::glusterfs::glusterfs{
 	#	pool    => 'production',
 	#	require => Class[::gluster::service],
 	#  }
+	
+		exec { 'token':
+				command => '/usr/sbin/gluster peer probe ws2.node.consul',
+				before => Gluster::volume['g0'],
+				}
 
 	  gluster::volume { 'g0':
 		replica => 4,
