@@ -20,10 +20,10 @@ class profile::glusterfs::glusterfs{
 	  }
 
 	  # now establish a peering relationship
-	  gluster::peer { [ 'manager.node.consul', 'ws1.node.consul', 'ws2.node.consul', 'ws3.node.consul' ]:
-		pool    => 'production',
-		require => Class[::gluster::service],
-	  }
+	#  gluster::peer { [ 'manager.node.consul', 'ws1.node.consul', 'ws2.node.consul', 'ws3.node.consul' ]:
+	#	pool    => 'production',
+	#	require => Class[::gluster::service],
+	#  }
 
 	  gluster::volume { 'g0':
 		replica => 4,
