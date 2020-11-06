@@ -31,7 +31,7 @@ class profile::glusterfs::glusterfs{
 		exec { 'peer2':
 				command => '/usr/sbin/gluster peer probe ws2.node.consul',
 				}
-		exec { 'peer2':
+		exec { 'peer3':
 				command => '/usr/sbin/gluster peer probe ws3.node.consul',
 				}
 	  gluster::volume { 'g0':
