@@ -5,5 +5,10 @@ class profile::glusterfs::gluster_client{
 		client  => true,
 		repo    => false,
 	  }
+	  
+	   class { ::gluster::service:
+		ensure  => running,
+		require => Class[::gluster::install],
+	  }
 
 }
