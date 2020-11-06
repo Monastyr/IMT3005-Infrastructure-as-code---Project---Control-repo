@@ -37,7 +37,7 @@ class profile::glusterfs::glusterfs{
 						 'ws3.node.consul:/export/brick1/brick',],
 		options => [ 'nfs.disable: true' ],
 		force => true,
-		require => Gluster::Peer[ [ 'manager.node.consul', 'ws1.node.consul', 'ws2.node.consul', 'ws3.node.consul' ] ],
+		require => Exec['g0'],
 	  }
 	
 	gluster::mount { '/mnt/':
