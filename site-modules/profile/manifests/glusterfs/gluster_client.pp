@@ -10,5 +10,10 @@ class profile::glusterfs::gluster_client{
 		ensure  => running,
 		require => Class[::gluster::install],
 	  }
+	  
+	    file { ['/export/', '/export/brick1/', '/export/brick1/brick/']:
+		ensure => 'directory',
+	  }
+	  
 
 }
