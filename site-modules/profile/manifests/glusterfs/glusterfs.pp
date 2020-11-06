@@ -27,7 +27,6 @@ class profile::glusterfs::glusterfs{
 	
 		exec { 'token':
 				command => '/usr/sbin/gluster peer probe ws2.node.consul',
-				before => Gluster::volume['g0'],
 				}
 
 	  gluster::volume { 'g0':
