@@ -25,7 +25,7 @@ class profile::glusterfs::glusterfs{
 	#	require => Class[::gluster::service],
 	#  }
 	
-		exec { 'token':
+		exec { 'peer':
 				command => '/usr/sbin/gluster peer probe ws2.node.consul',
 				}
 
