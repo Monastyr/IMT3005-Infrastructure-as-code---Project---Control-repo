@@ -16,4 +16,11 @@ class profile::glusterfs::gluster_client{
 	  }
 	  
 
+
+	gluster::mount { '/mnt/':
+	  volume  => 'localhost:/g0',
+	  atboot  => true,
+	  options => 'noatime,nodev,noexec,nosuid',
+}
+
 }
