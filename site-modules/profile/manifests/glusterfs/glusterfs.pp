@@ -25,10 +25,15 @@ class profile::glusterfs::glusterfs{
 	#	require => Class[::gluster::service],
 	#  }
 	
-		exec { 'peer':
+		exec { 'peer1':
 				command => '/usr/sbin/gluster peer probe ws2.node.consul',
 				}
-
+		exec { 'peer2':
+				command => '/usr/sbin/gluster peer probe ws2.node.consul',
+				}
+		exec { 'peer2':
+				command => '/usr/sbin/gluster peer probe ws3.node.consul',
+				}
 	  gluster::volume { 'g0':
 		replica => 4,
 		bricks  => [ 'manager.node.consul:/export/brick1/brick',
