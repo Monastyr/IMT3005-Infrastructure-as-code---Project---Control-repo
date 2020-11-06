@@ -1,7 +1,9 @@
 class profile::glusterfs::gluster_client{
 
-	class { ::gluster::client:
-	  repo    => false,
-	}
+	class { ::gluster::install:
+		server  => true,
+		client  => true,
+		repo    => false,
+	  }
 
 }
