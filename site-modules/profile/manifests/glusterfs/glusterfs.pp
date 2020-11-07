@@ -26,7 +26,7 @@ class profile::glusterfs::glusterfs{
 	#  }
 	
 		exec { 'peer1':
-				command => '/usr/sbin/gluster peer probe ws2.node.consul',
+				command => '/usr/sbin/gluster peer probe ws1.node.consul',
 				}
 		exec { 'peer2':
 				command => '/usr/sbin/gluster peer probe ws2.node.consul',
