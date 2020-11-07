@@ -44,10 +44,6 @@ class profile::glusterfs::glusterfs{
 		force => true,
 		require => Exec['peer1','peer2' ,'peer3' ],
 	  }
-	  
-		exec { 'volStart':
-				command => '/usr/sbin/gluster volume start g0',
-				}
 				
 	gluster::mount { '/mnt/':
 	  volume  => 'localhost:/g0',
