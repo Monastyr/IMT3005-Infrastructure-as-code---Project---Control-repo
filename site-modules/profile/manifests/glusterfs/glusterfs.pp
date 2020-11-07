@@ -49,7 +49,6 @@ class profile::glusterfs::glusterfs{
 	  volume  => 'localhost:/g0',
 	  atboot  => true,
 	  options => 'noatime,nodev,noexec,nosuid',
-	  require => Exec['volStart']
 }
 
 }
