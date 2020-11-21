@@ -18,6 +18,6 @@ node /(db)\d?.node.consul/ {
   include ::role::database_server
 }
 
-node /(ws)\d?.node.consul/ {
-  include ::role::wordpress_server
+node /(web)\d?.node.consul/ {
+  include ::role::webserver
 }
