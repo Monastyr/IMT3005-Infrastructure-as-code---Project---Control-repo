@@ -4,4 +4,3 @@ class role::monitoring_server {
   include ::profile::consul::server
   include ::profile::sensu::backend
   include ::wordpress::docker_worker
-}
