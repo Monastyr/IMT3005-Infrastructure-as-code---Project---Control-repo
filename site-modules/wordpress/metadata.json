@@ -6,7 +6,10 @@
   "license": "Apache-2.0",
   "source": "",
   "dependencies": [
-
+      {"name":"puppetlabs/docker","version_requirement":">= 3.12.1"},
+	  {"name":"puppetlabs/mysql","version_requirement":">= 10.7.1"},
+ 	  {"name":"puppet/gluster","version_requirement":">= 5.0.0"}
+	  
   ],
   "operatingsystem_support": [
     {
