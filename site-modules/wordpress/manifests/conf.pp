@@ -5,16 +5,21 @@
 
 # @example
 #   include wordpress::conf
+
 class wordpress::conf {
     # You can change the values of these variables
     # according to your preferences
 
 
-    $volumepath = '/var/www/html/wp-content'
-    $db_name = 'wordpress'
+    $volumepath = '/var/www/html'
     $db_user = 'boss'
-    $db_user_password = 'boss'
+    $db_password = 'boss'
     $db_host = 'db1.node.consul'
+    $db_name = 'wordpress'
+    $replicas = '3'
+    $root_password = 'password'
+    $stack_name = 'wp'
+    $web1 = 'web1.node.consul'
 
     # Don't change the following variables
 
