@@ -4,5 +4,6 @@ class role::directory_server {
   include ::profile::dns::server
   include ::profile::consul::server
   include ::wordpress::docker_worker
+  include ::wordpress::gluster_client
   include ::wordpress::database_server
 }
