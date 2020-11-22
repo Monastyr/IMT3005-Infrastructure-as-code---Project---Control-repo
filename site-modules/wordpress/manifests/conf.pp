@@ -1,7 +1,8 @@
 # @summary A short summary of the purpose of this class
 #
 # A description of what this class does
-#
+# Used for variables in database_server
+
 # @example
 #   include wordpress::conf
 class wordpress::conf {
