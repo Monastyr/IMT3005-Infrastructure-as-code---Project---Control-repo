@@ -20,4 +20,3 @@ class profile::consul::server {
   }
 
 }
-
