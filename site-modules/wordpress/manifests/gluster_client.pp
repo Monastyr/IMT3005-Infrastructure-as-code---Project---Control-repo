@@ -23,7 +23,7 @@ class wordpress::gluster_client{
 	  options => 'noatime,nodev,noexec,nosuid',
 }->
 
-	file { '/mnt/wp-content/':
+	file { '/mnt/wp/':
 		ensure => 'directory',
 	  }
 
