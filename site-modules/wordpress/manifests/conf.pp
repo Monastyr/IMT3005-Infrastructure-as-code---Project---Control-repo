@@ -14,7 +14,7 @@ class wordpress::conf {
     $volumepath = '/var/www/html'
     $db_user = 'boss'
     $db_password = 'boss'
-    $db_host = 'dir.node.consul'
+    $db_host = 'db1.node.consul'
     $db_name = 'wordpress'
     $replicas = '3'
     $root_password = 'password'
