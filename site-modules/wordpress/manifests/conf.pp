@@ -20,6 +20,8 @@ class wordpress::conf {
     $root_password = 'password'
     $stack_name = 'wp'
     $web1 = 'web1.node.consul'
+    $web2 = 'web2.node.consul'
+    $web3 = 'web3.node.consul'
 
     # Don't change the following variables
 
