@@ -22,12 +22,12 @@ mod 'KyleAnderson-consul',    '6.0.1'
 mod 'camptocamp-systemd',     '2.6.0'
 mod 'crayfishx-hiera_http',   '3.4.0'
 mod 'puppet-archive',         '3.2.1'
-#mod 'puppetlabs-chocolatey',  '4.1.0'
+mod 'puppetlabs-chocolatey',  '4.1.0'
 mod 'puppetlabs-concat',      '6.1.0'
-#mod 'puppetlabs-dsc',         '1.9.4'
+mod 'puppetlabs-dsc',         '1.9.4'
 mod 'puppetlabs-inifile',     '3.1.0'
 mod 'puppetlabs-ntp',         '8.0.0'
-#mod 'puppetlabs-powershell',  '2.3.0'
+mod 'puppetlabs-powershell',  '2.3.0'
 mod 'puppetlabs-reboot',      '3.0.0'
 mod 'puppetlabs-registry',    '2.1.0'
 mod 'puppetlabs-stdlib',      '6.0.0'
@@ -56,13 +56,6 @@ mod 'dalen-dnsquery',         '3.0.0'
 # Updates
 mod 'puppet-unattended_upgrades', '4.0.0'
 
-#PROJECT
-mod 'hunner-wordpress', '1.0.0'
 mod 'puppetlabs-mysql', '10.7.1'
-mod 'puppetlabs-apache', '5.6.0'
 mod 'puppetlabs-docker', '3.12.1'
-#mod 'fraenki-galera', '2.2.0'
-#mod 'puppetlabs-firewall', '2.7.0'  #Galera dep
-#mod 'puppetlabs-xinetd', '3.3.0'  #Galera dep.
-#mod 'puppet-epel', '3.0.1'  #Galera dep.
 mod 'puppet-gluster', '5.0.0'

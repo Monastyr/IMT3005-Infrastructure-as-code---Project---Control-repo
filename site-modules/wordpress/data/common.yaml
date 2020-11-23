@@ -1,0 +1,7 @@
+--- {}
+#wordpress::volumepath: '/var/www/html/wp-content'
+#wordpress::db_host: 'db1.node.consul'
+#wordpress::db_user: 'boss'
+#wordpress::db_password: 'boss'
+#wordpress::db_name: 'wordpress'
+#wordpress::replicas: '3'
