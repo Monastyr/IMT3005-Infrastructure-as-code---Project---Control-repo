@@ -4,7 +4,6 @@
 # To install a server with the default options
 # To create a database with a user and some assigned privileges
 
-
 class wordpress::database_server {
 class { 'wordpress::conf': }
 
@@ -13,14 +12,15 @@ class { '::mysql::server':
   override_options => {'mysqld' => {'bind-address' => '0.0.0.0'}},
   }
 
-	mysql::db {'wordpress':
-		user 			=> $wordpress::conf::db_user,
-		password 	=> $wordpress::conf::db_password,
-		dbname 	  => $wordpress::conf::db_name,
-		host 			=> '%',
-	  grant  		=> ['ALL PRIVILEGES'],
+mysql::db {'wordpress':
+	user        => $wordpress::conf::db_user,
+	password 	=> $wordpress::conf::db_password,
+	dbname      => $wordpress::conf::db_name,
+	host 	    => '%',
+  grant  	    => ['ALL PRIVILEGES'],
 	}
-  class { 'mysql::server::backup':
+
+class { 'mysql::server::backup':
   backupuser     => 'myuser',
   backuppassword => 'mypassword',
   backupdir      => '/tmp/backups',
