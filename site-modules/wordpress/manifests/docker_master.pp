@@ -1,5 +1,4 @@
 class wordpress::docker_master {
-
   class { 'docker':}
 
       docker::swarm {'cluster_manager':
