@@ -21,6 +21,6 @@ docker::stack { 'prom':
     ensure        => present,
     stack_name    => 'prom',
     require       => [Class['docker'], Vcsrepo['/root/prom'], ],
-  }~>
+  }
   
 }
