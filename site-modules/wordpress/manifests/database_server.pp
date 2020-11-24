@@ -14,10 +14,11 @@ class { '::mysql::server':
   override_options => {'mysqld' => {'bind-address' => '0.0.0.0'}},
   }
 
-mysql::db {'wordpress':
-	user 			=> $wordpress::conf::db_user,
-	password 	=> $wordpress::conf::db_password,
-	dbname 	  => $wordpress::conf::db_name,
-	host 			=> '%',
-  grant  		=> ['ALL PRIVILEGES'],
+	mysql::db {'wordpress':
+		user 			=> $wordpress::conf::db_user,
+		password 	=> $wordpress::conf::db_password,
+		dbname 	  => $wordpress::conf::db_name,
+		host 			=> '%',
+	  grant  		=> ['ALL PRIVILEGES'],
+	}
 }
