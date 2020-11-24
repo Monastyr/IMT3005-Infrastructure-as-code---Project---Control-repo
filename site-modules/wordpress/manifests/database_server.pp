@@ -14,10 +14,10 @@ class { '::mysql::server':
 
 mysql::db {'wordpress':
 	user        => $wordpress::conf::db_user,
-	password 	=> $wordpress::conf::db_password,
+	password    => $wordpress::conf::db_password,
 	dbname      => $wordpress::conf::db_name,
 	host 	    => '%',
-  grant  	    => ['ALL PRIVILEGES'],
+        grant       => ['ALL PRIVILEGES'],
 	}
 
 class { 'mysql::server::backup':
