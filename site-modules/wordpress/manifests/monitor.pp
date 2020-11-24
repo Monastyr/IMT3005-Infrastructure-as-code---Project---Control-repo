@@ -19,7 +19,7 @@ vcsrepo { '/root/prom':
 
 docker::stack { 'prom':
     ensure        => present,
-    compose_files => ['/prom/docker-stack.yml'],
+    compose_files => ['/root/prom/docker-stack.yml'],
     stack_name    => 'prom',
     require       => [Class['docker'], Vcsrepo['/root/prom'], ],
   }
