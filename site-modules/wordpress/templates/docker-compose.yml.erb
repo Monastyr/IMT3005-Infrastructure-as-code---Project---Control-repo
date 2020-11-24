@@ -30,9 +30,13 @@ services:
        --docker.watch \
        --web \
        --loglevel=DEBUG
+       --api \
+       --metrics \
+       --metrics.prometheus.buckets=0.1,0.3,1.2,5.0
+       --docker.domain=docker.localhost 
      ports:
        - "80:80"
-       - "8080:8080"
+       - "8082:8080"
      volumes:
        - /var/run/docker.sock:/var/run/docker.sock
      deploy:
