@@ -14,7 +14,7 @@ class { 'docker':}
 vcsrepo { '/root/prom':
   ensure   => present,
   provider => git,
-  source   => 'https://github.com/vegasbrianc/prometheus.git',
+  source   => 'git://github.com/vegasbrianc/prometheus.git',
 }->
 
 docker::stack { 'prom':
